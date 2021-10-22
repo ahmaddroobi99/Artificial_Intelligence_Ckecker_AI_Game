@@ -1,4 +1,6 @@
 import pygame
+
+from Checkers import board
 from Checkers.Constants import Width, Height, Square_Size, Red
 from  Checkers.game import Game
 from Checkers.board import Board
@@ -32,6 +34,9 @@ def main ():
     while run :
         clock.tick(FPS)
         # pass
+        if game.winner() != None:
+            print(game.winner())
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run =False
@@ -40,8 +45,8 @@ def main ():
                 # pass
                 pos =pygame.mouse.get_pos()
                 row ,col = get_row_col_from_mouse(pos)
-                if game.turn ==Red:
-                  game.select(row,col)
+                # if game.turn ==Red:
+                game.select(row,col)
                 # game.select(row, col)
                 # piece =board.get_piece(row,col)
                 # board.move(piece,4,3)

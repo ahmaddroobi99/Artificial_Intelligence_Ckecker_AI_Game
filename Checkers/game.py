@@ -24,8 +24,11 @@ class Game:
         self.turn = Red
         self.valid_moves = {}
 
+    def winner(self):
+        return self.board.winner()
+
     def reset (self) :
-       self._init(self)
+       self._init()
 
 
     def select(self,row,col):
@@ -36,11 +39,11 @@ class Game:
                 self.select(row,col)
 
 
-            piece = self.board.get_piece(row,col )
-            if piece != 0and piece.color ==self.turn :
-                self.selected =piece
-                self.valid_moves= self.board.get_valid_movies (piece)
-                return True
+        piece = self.board.get_piece(row,col )
+        if piece != 0 and piece.color ==self.turn :
+            self.selected =piece
+            self.valid_moves= self.board.get_valid_movies (piece)
+            return True
 
         return False
 
@@ -48,13 +51,21 @@ class Game:
 
 
     def _move(self, row, col):
+        print("hi")
+
         piece = self.board.get_piece(row,col)
-        if self.selected and piece == 0 and (row,col)in self.valid_moves:
+        if self.selected and piece == 0 and (row,col) in self.valid_moves:
             self.board.move(self.selected,row,col)
+            skipped =self.valid_moves[(row,col)]
+
+            if skipped :
+                self.board.remove(skipped)
             self.change_turn()
-            # skipped =self.valid_moves
         else :
+            print("hi")
+
             return False
+
         return True
 
     def draw_valid_moves (self ,moves) :
@@ -65,7 +76,8 @@ class Game:
 
 
     def change_turn (self):
-        if self.turn ==Red :
-            self.turn =White
+        self.valid_moves = {}
+        if self.turn == Red :
+            self.turn = White
         else :
             self.turn = Red
