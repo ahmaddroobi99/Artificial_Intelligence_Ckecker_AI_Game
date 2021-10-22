@@ -1,6 +1,6 @@
 
 import pygame
-from .Constants import Red ,White
+from .Constants import Red ,White ,Yellow ,Square_Size
 from Checkers.board import Board
 
 
@@ -15,6 +15,7 @@ class Game:
 
     def update(self):
         self.board.draw(self.Win)
+        self.draw_valid_moves(self.valid_moves)
         pygame.display.update()
 
     def _init(self):
@@ -34,11 +35,11 @@ class Game:
                 self.selected =None
                 self.select(row,col)
 
-        else:
+
             piece = self.board.get_piece(row,col )
             if piece != 0and piece.color ==self.turn :
                 self.selected =piece
-                self.valid_moves= self.board.get_valid_moves (piece)
+                self.valid_moves= self.board.get_valid_movies (piece)
                 return True
 
         return False
@@ -56,9 +57,15 @@ class Game:
             return False
         return True
 
+    def draw_valid_moves (self ,moves) :
+        for move in moves :
+            row ,col =move
+            pygame.draw.circle(self.Win,Yellow,(col*Square_Size +Square_Size//2, row*Square_Size+Square_Size//2),10 )
+
+
 
     def change_turn (self):
         if self.turn ==Red :
-            self.White
+            self.turn =White
         else :
             self.turn = Red

@@ -68,3 +68,97 @@ class Board :
 
 
 
+
+
+    def get_valid_movies (self,piece) :
+        moves= {}
+        left =piece.col -1
+        right = piece.col + 1
+        row =piece.row
+
+        if piece.color ==Red or piece.king :
+            moves.update(self._traverse_left(row-1 ,max(row-3,-1),-1,piece.color,left))
+            moves.update(self._traverse_right(row-1 ,max(row-3,-1),-1,piece.color,right))
+
+        if piece.color ==White or piece.king :
+            moves.update(self._traverse_left(row + 1, min(row - 3, -1),1, piece.color, left))
+            moves.update(self._traverse_right(row + 1, min(row - 3, -1), 1, piece.color, right))
+
+
+        return moves
+
+
+
+
+
+    def _traverse_left (self ,start ,stop,step ,color ,left ,skip_only= [ ] ):
+        moves ={}
+        last =[]
+
+        for r in range  (start ,stop ,step ):
+            if left <0 :
+                break
+            current = self.board[r][left]
+            if current ==0 :
+                if skip_only and not last :
+                    break
+                elif skip_only :
+                     moves[(r,left)]=last+skip_only
+                else :
+                    moves[(r,left)]= last
+
+                if last :
+                    if step ==-1 :
+                        row=max(r-3,0)
+
+                    else :
+                        row = min (r+3 ,Rows)
+                    moves.update(self._traverse_left(r+step,row ,step ,color ,left -1 ,skip_only =last ))
+                    moves.update(self._traverse_right(r+step,row ,step ,color ,left +1 ,skip_only =last ))
+                break
+            elif  current.color ==color  :
+                break
+            else :
+                last =[current]
+
+            left-=1
+        return moves
+
+
+
+
+
+    def _traverse_right (self ,start ,stop,step ,color ,right  ,skip_only= [ ]) :
+        moves = {}
+        last = []
+
+        for r in range(start, stop, step):
+            if right >= Cols:
+                break
+            current = self.board[r][right]
+            if current == 0:
+                if skip_only and not last:
+                    break
+                elif skip_only:
+                    moves[(r, right)] = last + skip_only
+                else:
+                    moves[(r, right)] = last
+
+                if last:
+                    if step == -1:
+                        row = max(r - 3, 0)
+
+                    else:
+                        row = min(r + 3, Rows)
+                    moves.update(self._traverse_left(r + step, row, step, color, right - 1, skip_only=last))
+                    moves.update(self._traverse_right(r + step, row, step, color, right + 1, skip_only=last))
+                break
+            elif current.color == color:
+                break
+            else:
+                last = [current]
+
+            right -= 1
+        return moves
+
+
