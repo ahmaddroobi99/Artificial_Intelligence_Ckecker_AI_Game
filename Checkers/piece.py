@@ -1,6 +1,6 @@
 import pygame
 
-from .Constants import DarkGreen,LightGreen ,Square_Size,Grey
+from .Constants import DarkGreen,LightGreen ,Square_Size,Grey,Crown
 
 
 
@@ -38,6 +38,15 @@ class Piece :
         radius = Square_Size // 2 - self.Padding
         pygame.draw.circle(win ,Grey ,(self.x,self.y ),radius +self.border)
         pygame.draw.circle(win,self.color,(self.x,self.y),radius)
+        if self.king :
+            win.blit(Crown,(self.x -Crown.get_width()//2,self.y -Crown.get_height()//2))
+
+
+    def move (self,row,col):
+        self.row =row
+        self.col =col
+        self.cal_pos()
+
 
     def __repr__(self):
         return str(self.color)

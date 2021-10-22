@@ -10,3 +10,5 @@ DarkGreen =(0,100,0)
 Red = (255,0,0)
 White =(255,255,255)
 Grey =(128,128,120)
+
+Crown = pygame.transform.scale(pygame.image.load('assets/kk.png'), (44, 22))
