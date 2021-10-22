@@ -1,5 +1,6 @@
 import pygame
 from Checkers.Constants  import Width,Height,Square_Size
+from  Checkers.game import Game
 from Checkers.board import Board
 
 
@@ -21,10 +22,11 @@ def get_row_col_from_mouse(pos) :
 def main ():
     run =True
     clock =pygame.time.Clock()
-    board= Board()
+    # board= Board()
+    game =Game(Win)
 
-    piece =board.get_piece(0,1)
-    board.move(piece ,4,3)
+    # piece =board.get_piece(0,1)
+    # board.move(piece ,4,3)
 
 
     while run :
@@ -38,12 +40,13 @@ def main ():
                 # pass
                 pos =pygame.mouse.get_pos()
                 row ,col = get_row_col_from_mouse(pos)
-                piece =board.get_piece(row,col)
-                board.move(piece,4,3)
+                # game.select(row, col)
+                # piece =board.get_piece(row,col)
+                # board.move(piece,4,3)
                 
-        board.draw(Win)
-        pygame.display.update()
-
+        # board.draw(Win)
+        # pygame.display.update()
+        game.update()
 
     pygame.quit()
 
