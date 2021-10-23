@@ -1,4 +1,6 @@
 import pygame
+
+from . import piece
 from .Constants import DarkGreen, Rows, Cols, LightGreen, Square_Size, White, Red
 from .piece import Piece
 
@@ -31,9 +33,9 @@ class Board:
         if row == Rows - 1 or row == 0:
             piece.make_king()
             if piece.color == White:
-                self.white_kings = self.white_kings + 1
+                self.white_kings += 1
             else:
-                self.red_kings = self.red_kings + 1
+                self.red_kings += 1
 
     def get_piece(self, row, col):
         return self.board[row][col]
@@ -182,5 +184,5 @@ class Board:
             else:
                 last = [current]
 
-            right -= 1
+            right += 1
         return moves
