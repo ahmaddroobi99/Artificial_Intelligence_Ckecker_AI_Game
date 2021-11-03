@@ -1,10 +1,10 @@
 import pygame
 
 from Checkers import board
-from Checkers.Constants import Width, Height, Square_Size, Red
+from Checkers.Constants import Width, Height, Square_Size, Red ,White
 from  Checkers.game import Game
 from Checkers.board import Board
-
+from MiniMax_AlphaBata_Algo.AlphBetaAlgorithm import miniMax
 
 
 FPS =60
@@ -34,8 +34,13 @@ def main ():
     while run :
         clock.tick(FPS)
         # pass
+        if game.turn ==White :
+            value ,new_board =miniMax(game.get_board(),4, White,game)
+            game.ai_move(new_board)
+
         if game.winner() != None:
             print(game.winner())
+            run =False
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

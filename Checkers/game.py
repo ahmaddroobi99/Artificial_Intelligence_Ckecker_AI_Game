@@ -45,7 +45,7 @@ class Game:
         return False
 
     def _move(self, row, col):
-        print("hi")
+        # print("hi")
 
         piece = self.board.get_piece(row, col)
         if self.selected and piece == 0 and (row, col) in self.valid_moves:
@@ -56,7 +56,7 @@ class Game:
                 self.board.remove(skipped)
             self.change_turn()
         else:
-            print("hi")
+            # print("hi")
 
             return False
 
@@ -81,3 +81,12 @@ class Game:
             self.turn = White
         else:
             self.turn = Red
+
+
+    def  get_board (self) :
+        return self.board
+
+
+    def ai_move(self,board):
+        self.board =board
+        self.change_turn()
