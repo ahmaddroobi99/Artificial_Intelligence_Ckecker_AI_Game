@@ -50,7 +50,6 @@ def simulate_move(piece, move, board, game, skip):
         board.remove(skip)
     return board
 
-
 def draw_moves(game, board, piece):
     valid_moves = board.get_valid_movies(piece)
     board.draw(game.Win)
@@ -58,3 +57,4 @@ def draw_moves(game, board, piece):
     game.draw_valid_moves(valid_moves.keys())
     pygame.display.update()
     # pygame.time.delay(100)
+    #end
