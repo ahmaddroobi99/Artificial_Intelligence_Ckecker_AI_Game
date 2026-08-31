@@ -1,19 +1,17 @@
-# Artificial_Intelligence_Ckecker_AI_Game
+# Checkers — Minimax + Alpha-Beta
 
-Original Python coursework / practice repository (2021).
+AI course project (with Omar): a playable Checkers game in Python.
 
-This repository is **original work** on this account. It is kept for provenance.
+- Board, pieces, constants under `Checkers/`
+- Minimax with alpha-beta pruning under `MiniMax_AlphaBata_Algo/`
+- Entry: `Ai_Project_checkers.py`
+- Short write-up: `Paper.pdf`
 
-It is **not** current research. Featured work:
+Undergraduate AI project, not a game engine.
 
-- [qg-lada-lab](https://github.com/ahmaddroobi99/qg-lada-lab) — QG Lagrangian data assimilation
-- [ai-perception-lab](https://github.com/ahmaddroobi99/ai-perception-lab) — computer vision lab
-- Profile: [github.com/ahmaddroobi99](https://github.com/ahmaddroobi99)
+**Stack:** Python, Minimax, alpha-beta
 
-## Language
+---
+Historical **BSc Computer Engineering** work (An-Najah National University, 2021). Kept for provenance — not current research.
 
-Python
-
-## Year
-
-2021
+Current work: [github.com/ahmaddroobi99](https://github.com/ahmaddroobi99)
